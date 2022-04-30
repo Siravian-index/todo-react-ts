@@ -1,26 +1,19 @@
 import * as React from 'react'
-import reducer, { stateType, todo } from './reducer'
+import reducer, { actionType, stateType, todo } from './reducer'
 
 type Props = { children: JSX.Element }
 
-const initialState: stateType = {
-  state: {
-    todo: {
-      title: '',
-      message: '',
-      id: '',
-      isDone: false,
-    },
-    todoList: [] as todo[],
-  },
+type contextType = {
+  state: stateType
+  dispatch: React.Dispatch<actionType>
 }
 
-const Context = React.createContext<stateType>(initialState)
+const Context = React.createContext<contextType>({} as contextType)
 const ContextProvider: React.FC<Props> = ({ children }) => {
-  const [state, dispatch] = React.useReducer(reducer, initialState)
+  const [state, dispatch] = React.useReducer(reducer, {} as stateType)
   return (
     <>
-      <Context.Provider value={{ ...state, dispatch }}>{children}</Context.Provider>
+      <Context.Provider value={{ state, dispatch }}>{children}</Context.Provider>
     </>
   )
 }

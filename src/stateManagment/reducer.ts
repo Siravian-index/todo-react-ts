@@ -1,5 +1,3 @@
-import { Dispatch } from 'react'
-
 export enum todoAction {
   ADD = 'ADD',
   REMOVE = 'REMOVE',
@@ -7,7 +5,7 @@ export enum todoAction {
 }
 export type todo = { title: string; message: string; id: string; isDone: boolean }
 export type actionType = { type: todoAction; payload: todo[] }
-export type stateType = { state: { todo: todo; todoList: todo[] }; dispatch?: Dispatch<actionType> }
+export type stateType = { todo: todo; todoList: todo[] }
 
 function reducer(state: stateType, action: actionType) {
   const { type, payload } = action
