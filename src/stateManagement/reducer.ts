@@ -4,11 +4,14 @@ export enum todoAction {
   UPDATE = 'UPDATE',
 }
 export type todo = { title: string; message: string; id: string; isDone: boolean }
-export type actionType = { type: todoAction; payload: todo[] }
 export type stateType = { todo: todo; todoList: todo[] }
+export type actionType = { type: todoAction; payload: stateType }
 
 function reducer(state: stateType, action: actionType) {
-  const { type, payload } = action
+  const {
+    type,
+    payload: { todo, todoList },
+  } = action
   switch (type) {
     case todoAction.ADD:
       return state

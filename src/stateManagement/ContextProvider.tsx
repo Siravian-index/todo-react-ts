@@ -8,9 +8,14 @@ type contextType = {
   dispatch: React.Dispatch<actionType>
 }
 
+const initialState: stateType = {
+  todo: { title: '', message: '', id: '', isDone: false },
+  todoList: [{ title: 'todoTest1', message: 'testing context', id: '0', isDone: false }],
+}
+
 const Context = React.createContext<contextType>({} as contextType)
 const ContextProvider: React.FC<Props> = ({ children }) => {
-  const [state, dispatch] = React.useReducer(reducer, {} as stateType)
+  const [state, dispatch] = React.useReducer(reducer, initialState)
   return (
     <>
       <Context.Provider value={{ state, dispatch }}>{children}</Context.Provider>
@@ -19,3 +24,5 @@ const ContextProvider: React.FC<Props> = ({ children }) => {
 }
 
 export default ContextProvider
+
+export const useTodoState = () => React.useContext(Context)

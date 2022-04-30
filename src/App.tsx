@@ -1,11 +1,12 @@
-import { useState } from 'react'
+import TodoList from './components/TodoList'
+import ContextProvider from './stateManagement/ContextProvider'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <div className='App'>
-      <header className='App-header'></header>
+      <ContextProvider>
+        <TodoList />
+      </ContextProvider>
     </div>
   )
 }
