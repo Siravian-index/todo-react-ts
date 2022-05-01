@@ -17,7 +17,7 @@ const TodoList: React.FC = () => {
     dispatch({ type: todoAction.REMOVE, payload: todo })
   }
   return (
-    <div>
+    <div className='flex'>
       {todoList
         .slice()
         .sort((a, b) => Number(a.isDone) - Number(b.isDone))
