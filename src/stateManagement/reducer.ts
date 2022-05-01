@@ -13,7 +13,7 @@ function reducer(state: stateType, action: actionType) {
     case todoAction.ADD:
       return { ...state, todoList: [...state.todoList, payload] }
     case todoAction.REMOVE:
-      return state
+      return { ...state, todoList: state.todoList.filter((t) => t.id !== payload.id) }
     case todoAction.UPDATE:
       return {
         ...state,

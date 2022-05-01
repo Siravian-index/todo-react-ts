@@ -16,6 +16,10 @@ const initialState: stateType = {
 const Context = React.createContext<contextType>({} as contextType)
 const ContextProvider: React.FC<Props> = ({ children }) => {
   const [state, dispatch] = React.useReducer(reducer, initialState)
+  React.useEffect(() => {
+    console.log('Use localStorage to save the todos and then read them from it')
+    console.log('TODOS: add styles, sort todos by isDone, save to localStorage')
+  }, [state])
   return <Context.Provider value={{ state, dispatch }}>{children}</Context.Provider>
 }
 
