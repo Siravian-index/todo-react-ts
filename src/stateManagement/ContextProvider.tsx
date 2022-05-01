@@ -1,7 +1,7 @@
 import * as React from 'react'
 import reducer, { actionType, stateType, todo } from './reducer'
 
-type Props = { children: JSX.Element }
+type Props = { children: JSX.Element | JSX.Element[] }
 
 type contextType = {
   state: stateType
