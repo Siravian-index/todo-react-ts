@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { useTodoState } from '../stateManagement/ContextProvider'
 import { todo, todoAction } from '../stateManagement/reducer'
+import Todo from './Todo'
 
 const TodoList: React.FC = () => {
   const {
@@ -15,19 +16,13 @@ const TodoList: React.FC = () => {
   const deleteOnClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, todo: todo) => {
     dispatch({ type: todoAction.REMOVE, payload: todo })
   }
-  // sort this based on the isDone key
   return (
     <div>
       {todoList
         .slice()
         .sort((a, b) => Number(a.isDone) - Number(b.isDone))
         .map((t) => (
-          <div key={t.id}>
-            <div>{t.title}</div>
-            <div>{t.message}</div>
-            <input type='checkbox' checked={t.isDone} onChange={(e) => checkBox(e, t)} />
-            <button onClick={(e) => deleteOnClick(e, t)}>delete</button>
-          </div>
+          <Todo key={t.id} todo={t} checkBox={checkBox} deleteOnClick={deleteOnClick} />
         ))}
     </div>
   )
