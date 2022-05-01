@@ -1,13 +1,13 @@
 import * as React from 'react'
 import { todo } from '../stateManagement/reducer'
 
-interface ITodoProps {
+interface Props {
   todo: todo
   deleteOnClick(e: React.MouseEvent<HTMLButtonElement, MouseEvent>, todo: todo): void
   checkBox(e: React.ChangeEvent<HTMLInputElement>, todo: todo): void
 }
 
-const Todo: React.FunctionComponent<ITodoProps> = ({ todo: t, deleteOnClick, checkBox }) => {
+const Todo: React.FunctionComponent<Props> = ({ todo: t, deleteOnClick, checkBox }) => {
   return (
     <div key={t.id}>
       <div>{t.title}</div>

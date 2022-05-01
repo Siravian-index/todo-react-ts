@@ -17,7 +17,7 @@ const Context = React.createContext<contextType>({} as contextType)
 const ContextProvider: React.FC<Props> = ({ children }) => {
   const [state, dispatch] = React.useReducer(reducer, initialState)
   React.useEffect(() => {
-    console.log('TODOS: add styles, create Todo component')
+    console.log('TODOS: add styles')
   }, [state])
   return <Context.Provider value={{ state, dispatch }}>{children}</Context.Provider>
 }

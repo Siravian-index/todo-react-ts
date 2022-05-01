@@ -4,7 +4,7 @@ import ContextProvider from './stateManagement/ContextProvider'
 
 function App() {
   return (
-    <div className='App'>
+    <div className='flex justify-center flex-col items-center'>
       <ContextProvider>
         <TodoForm />
         <TodoList />
