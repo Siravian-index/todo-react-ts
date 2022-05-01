@@ -52,21 +52,20 @@ const TodoForm: React.FC = () => {
           </label>
         </div>
         <div className='md:w-2/3'>
-          <input
+          <textarea
             className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-orange-500'
             id='inline-full-name'
-            type='text'
             onChange={(e) => setUserInput({ title, isDone, message: e.target.value })}
             value={message}
           />
         </div>
       </div>
-      <div className='flex justify-center  md:items-center mb-6'>
+      <div className='flex justify-center md:items-center mb-6'>
         <div className='md:w-1/3'></div>
         <label className='md:w-2/3  text-gray-500 font-bold flex justify-evenly'>
           <span className='text-sm'>Is it done?</span>
           <input
-            className='mr-2 leading-tight accent-orange-500 w-6 h-6 rounded'
+            className='ml-4 leading-tight accent-orange-500 w-6 h-6 rounded'
             type='checkbox'
             checked={isDone}
             onChange={() => handleCheck()}
