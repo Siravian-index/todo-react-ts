@@ -4,11 +4,9 @@ import { nanoid } from 'nanoid'
 import { useTodoState } from '../stateManagement/ContextProvider'
 import { todo, todoAction } from '../stateManagement/reducer'
 
-interface ITodoFormProps {}
-
 type userInputType = { title: string; message: string }
 
-const TodoForm: React.FunctionComponent<ITodoFormProps> = (props) => {
+const TodoForm: React.FC = () => {
   const [{ title, message }, setUserInput] = React.useState<userInputType>({ title: '', message: '' })
   const { dispatch } = useTodoState()
 

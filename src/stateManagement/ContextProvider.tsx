@@ -16,11 +16,7 @@ const initialState: stateType = {
 const Context = React.createContext<contextType>({} as contextType)
 const ContextProvider: React.FC<Props> = ({ children }) => {
   const [state, dispatch] = React.useReducer(reducer, initialState)
-  return (
-    <>
-      <Context.Provider value={{ state, dispatch }}>{children}</Context.Provider>
-    </>
-  )
+  return <Context.Provider value={{ state, dispatch }}>{children}</Context.Provider>
 }
 
 export default ContextProvider

@@ -1,9 +1,7 @@
 import * as React from 'react'
 import { useTodoState } from '../stateManagement/ContextProvider'
 
-interface Props {}
-
-const TodoList: React.FC<Props> = (props) => {
+const TodoList: React.FC = () => {
   const {
     state: { todo, todoList },
     dispatch,
