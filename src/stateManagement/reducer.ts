@@ -15,7 +15,10 @@ function reducer(state: stateType, action: actionType) {
     case todoAction.REMOVE:
       return state
     case todoAction.UPDATE:
-      return state
+      return {
+        ...state,
+        todoList: state.todoList.map((t) => (t.id === payload.id ? { ...payload, isDone: !payload.isDone } : t)),
+      }
     default:
       throw new Error('Illegal todoAction passed')
   }
