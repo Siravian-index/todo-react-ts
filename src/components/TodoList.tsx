@@ -18,14 +18,17 @@ const TodoList: React.FC = () => {
   // sort this based on the isDone key
   return (
     <div>
-      {todoList.map((t) => (
-        <div key={t.id}>
-          <div>{t.title}</div>
-          <div>{t.message}</div>
-          <input type='checkbox' checked={t.isDone} onChange={(e) => checkBox(e, t)} />
-          <button onClick={(e) => deleteOnClick(e, t)}>delete</button>
-        </div>
-      ))}
+      {todoList
+        .slice()
+        .sort((a, b) => Number(a.isDone) - Number(b.isDone))
+        .map((t) => (
+          <div key={t.id}>
+            <div>{t.title}</div>
+            <div>{t.message}</div>
+            <input type='checkbox' checked={t.isDone} onChange={(e) => checkBox(e, t)} />
+            <button onClick={(e) => deleteOnClick(e, t)}>delete</button>
+          </div>
+        ))}
     </div>
   )
 }
