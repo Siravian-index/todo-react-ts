@@ -11,7 +11,7 @@ function reducer(state: stateType, action: actionType) {
   const { type, payload } = action
   switch (type) {
     case todoAction.ADD:
-      return state
+      return { ...state, todoList: [...state.todoList, payload] }
     case todoAction.REMOVE:
       return state
     case todoAction.UPDATE:
