@@ -1,7 +1,7 @@
 import * as React from 'react'
 import reducer, { actionType, stateType, todo } from './reducer'
 
-type Props = { children: JSX.Element | JSX.Element[] }
+type Props = { children?: React.ReactNode }
 
 type contextType = {
   state: stateType
@@ -10,7 +10,7 @@ type contextType = {
 
 const initialState: stateType = {
   todo: { title: '', message: '', id: '', isDone: false },
-  todoList: [{ title: 'todoTest1', message: 'testing context', id: '0', isDone: false }],
+  todoList: [{ title: 'Finish the todo app', message: 'Add your favorite styles', id: '0', isDone: false }],
 }
 
 const Context = React.createContext<contextType>({} as contextType)

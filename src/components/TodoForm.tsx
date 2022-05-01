@@ -28,7 +28,7 @@ const TodoForm: React.FC = () => {
   }
 
   return (
-    <form className='w-full max-w-sm p-2 md:mt-6' onSubmit={(e) => onSubmit(e)}>
+    <form className='w-full max-w-sm p-2' onSubmit={(e) => onSubmit(e)}>
       <div className='md:flex md:items-center mb-6'>
         <div className='md:w-1/3'>
           <label className='block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4' htmlFor='inline-full-name'>
@@ -62,10 +62,10 @@ const TodoForm: React.FC = () => {
       </div>
       <div className='flex justify-center md:items-center mb-6'>
         <div className='md:w-1/3'></div>
-        <label className='md:w-2/3  text-gray-500 font-bold flex justify-evenly'>
+        <label className='md:w-2/3  text-gray-500 font-bold flex justify-evenly  cursor-pointer'>
           <span className='text-sm'>Is it done?</span>
           <input
-            className='ml-4 leading-tight accent-orange-500 w-6 h-6 rounded'
+            className='ml-4 leading-tight accent-orange-500 w-6 h-6 rounded  cursor-pointer'
             type='checkbox'
             checked={isDone}
             onChange={() => handleCheck()}
