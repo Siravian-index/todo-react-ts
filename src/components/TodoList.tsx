@@ -4,10 +4,7 @@ import { todo, todoAction } from '../stateManagement/reducer'
 import Todo from './Todo'
 
 const TodoList: React.FC = () => {
-  const {
-    state: { todoList },
-    dispatch,
-  } = useTodoState()
+  const { state: todoList, dispatch } = useTodoState()
 
   const checkBox = (e: React.ChangeEvent<HTMLInputElement>, todo: todo) => {
     dispatch({ type: todoAction.UPDATE, payload: todo })
