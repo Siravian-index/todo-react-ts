@@ -1,20 +1,16 @@
 import * as React from 'react'
-import reducer, { actionType, stateType, todo } from './reducer'
+import reducer, { actionType, todoList } from './reducer'
 
 type Props = { children?: React.ReactNode }
 
 type contextType = {
-  state: stateType
+  state: todoList
   dispatch: React.Dispatch<actionType>
 }
 
-const initialState: stateType = [
-  { title: 'Finish the todo app', message: 'Add your favorite styles', id: '0', isDone: false },
-]
-
 const Context = React.createContext<contextType>({} as contextType)
 const ContextProvider: React.FC<Props> = ({ children }) => {
-  const [state, dispatch] = React.useReducer(reducer, initialState)
+  const [state, dispatch] = React.useReducer(reducer, [] as todoList)
   React.useEffect(() => {
     console.log('TODOS: add styles')
   }, [state])
