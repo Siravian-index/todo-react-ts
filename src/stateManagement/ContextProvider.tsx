@@ -1,5 +1,6 @@
 import * as React from 'react'
-import reducer, { actionType, todoList } from './reducer'
+import { getTodos } from '../service/todoService'
+import reducer, { actionType, todoAction, todoList } from './reducer'
 
 type Props = { children?: React.ReactNode }
 
@@ -11,9 +12,13 @@ type contextType = {
 const Context = React.createContext<contextType>({} as contextType)
 const ContextProvider: React.FC<Props> = ({ children }) => {
   const [state, dispatch] = React.useReducer(reducer, [] as todoList)
+  const getStateFromDB = async () => {
+    const todoList = await getTodos()
+    dispatch({ type: todoAction.LOAD, payload: todoList })
+  }
   React.useEffect(() => {
-    console.log('TODOS: add styles')
-  }, [state])
+    getStateFromDB()
+  }, [])
   return <Context.Provider value={{ state, dispatch }}>{children}</Context.Provider>
 }
 

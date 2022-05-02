@@ -14,7 +14,6 @@ export const getTodos = async () => {
   try {
     const res = await fetch(ENDPOINT)
     const data: todoList = await res.json()
-    console.log(data)
     return data
   } catch (err) {
     throw new Error(`Couldn't fetched ${err}`)
