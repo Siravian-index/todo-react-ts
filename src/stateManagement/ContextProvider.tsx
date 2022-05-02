@@ -8,10 +8,9 @@ type contextType = {
   dispatch: React.Dispatch<actionType>
 }
 
-const initialState: stateType = {
-  todo: { title: '', message: '', id: '', isDone: false },
-  todoList: [{ title: 'Finish the todo app', message: 'Add your favorite styles', id: '0', isDone: false }],
-}
+const initialState: stateType = [
+  { title: 'Finish the todo app', message: 'Add your favorite styles', id: '0', isDone: false },
+]
 
 const Context = React.createContext<contextType>({} as contextType)
 const ContextProvider: React.FC<Props> = ({ children }) => {
