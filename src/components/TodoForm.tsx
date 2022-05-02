@@ -1,8 +1,8 @@
 import * as React from 'react'
-import { nanoid } from 'nanoid'
 
 import { useTodoState } from '../stateManagement/ContextProvider'
 import { todo, todoAction } from '../stateManagement/reducer'
+import { createTodo } from '../service/todoService'
 
 type userInputType = { title: string; message: string; isDone: boolean }
 
@@ -18,11 +18,11 @@ const TodoForm: React.FC = () => {
     setUserInput({ title, message, isDone: !isDone })
   }
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (title && message) {
-      const todo: todo = { title, message, isDone, id: nanoid() }
-      dispatch({ type: todoAction.ADD, payload: todo })
+      const savedTodo: todo = await createTodo({ title, message, isDone })
+      dispatch({ type: todoAction.ADD, payload: savedTodo })
       setUserInput({ title: '', message: '', isDone: false })
     }
   }

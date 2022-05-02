@@ -9,6 +9,8 @@ enum HTTP_METHODS {
   DELETE = 'DELETE',
 }
 
+type todoWithoutId = { title: string; message: string; isDone: boolean }
+
 // TODO handle errors in a better way
 export const getTodos = async () => {
   try {
@@ -20,9 +22,17 @@ export const getTodos = async () => {
   }
 }
 
-export const createTodo = async (todo: todo) => {
-  const todoJSON = JSON.stringify(todo)
-  await fetch(ENDPOINT, { method: 'POST', body: todoJSON })
+export const createTodo = async (data: todoWithoutId) => {
+  const res = await fetch(ENDPOINT, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+  const todo: todo = await res.json()
+  return todo
 }
 
 export const updateTodo = async (todo: todo) => {
