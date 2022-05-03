@@ -20,12 +20,14 @@ const TodoList: React.FC = () => {
   }
   return (
     <div className='flex flex-col gap-4 mt-4 md:flex-row md:justify-evenly flex-wrap'>
-      {todoList
-        .slice()
-        .sort((a, b) => Number(a.isDone) - Number(b.isDone))
-        .map((t) => (
-          <Todo key={t.id} todo={t} checkBox={checkBox} deleteOnClick={deleteOnClick} />
-        ))}
+      {todoList.length ? (
+        todoList
+          .slice()
+          .sort((a, b) => Number(a.isDone) - Number(b.isDone))
+          .map((t) => <Todo key={t.id} todo={t} checkBox={checkBox} deleteOnClick={deleteOnClick} />)
+      ) : (
+        <p>No todos yet</p>
+      )}
     </div>
   )
 }
