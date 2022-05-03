@@ -2,6 +2,7 @@ import * as React from 'react'
 import { deleteTodo, updateTodo } from '../service/todoService'
 import { useTodoState } from '../stateManagement/ContextProvider'
 import { todo, todoAction } from '../stateManagement/reducer'
+import EmptyTodos from './EmptyTodos'
 import Todo from './Todo'
 
 const TodoList: React.FC = () => {
@@ -26,7 +27,7 @@ const TodoList: React.FC = () => {
           .sort((a, b) => Number(a.isDone) - Number(b.isDone))
           .map((t) => <Todo key={t.id} todo={t} checkBox={checkBox} deleteOnClick={deleteOnClick} />)
       ) : (
-        <p>No todos yet</p>
+        <EmptyTodos />
       )}
     </div>
   )
