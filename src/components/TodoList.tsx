@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { updateTodo } from '../service/todoService'
 import { useTodoState } from '../stateManagement/ContextProvider'
 import { todo, todoAction } from '../stateManagement/reducer'
 import Todo from './Todo'
@@ -6,11 +7,12 @@ import Todo from './Todo'
 const TodoList: React.FC = () => {
   const { state: todoList, dispatch } = useTodoState()
 
-  const checkBox = (e: React.ChangeEvent<HTMLInputElement>, todo: todo) => {
-    dispatch({ type: todoAction.UPDATE, payload: todo })
+  const checkBox = async (e: React.ChangeEvent<HTMLInputElement>, todo: todo) => {
+    const updatedTodo = await updateTodo({ ...todo, isDone: !todo.isDone })
+    dispatch({ type: todoAction.UPDATE, payload: updatedTodo })
   }
 
-  const deleteOnClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, todo: todo) => {
+  const deleteOnClick = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, todo: todo) => {
     dispatch({ type: todoAction.REMOVE, payload: todo })
   }
   return (

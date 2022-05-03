@@ -17,7 +17,7 @@ const HEADERS = {
 type todoWithoutId = { title: string; message: string; isDone: boolean }
 
 // TODO handle errors in a better way
-export const getTodos = async () => {
+export const getTodos = async (): Promise<todoList> => {
   try {
     const res = await fetch(ENDPOINT)
     const data: todoList = await res.json()
@@ -27,7 +27,7 @@ export const getTodos = async () => {
   }
 }
 
-export const createTodo = async (data: todoWithoutId) => {
+export const createTodo = async (data: todoWithoutId): Promise<todo> => {
   const res = await fetch(ENDPOINT, {
     method: HTTP_METHODS.POST,
     headers: HEADERS,
@@ -37,9 +37,11 @@ export const createTodo = async (data: todoWithoutId) => {
   return todo
 }
 
-export const updateTodo = async (todo: todo) => {
+export const updateTodo = async (todo: todo): Promise<todo> => {
   const todoJSON = JSON.stringify(todo)
-  await fetch(ENDPOINT, { method: HTTP_METHODS.PUT, body: todoJSON })
+  const res = await fetch(ENDPOINT, { method: HTTP_METHODS.PUT, headers: HEADERS, body: todoJSON })
+  const updatedTodo: todo = await res.json()
+  return updatedTodo
 }
 
 export const deleteTodo = async (todo: todo) => {
