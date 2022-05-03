@@ -9,10 +9,15 @@ enum HTTP_METHODS {
   DELETE = 'DELETE',
 }
 
+const HEADERS = {
+  Accept: 'application/json',
+  'Content-Type': 'application/json',
+}
+
 type todoWithoutId = { title: string; message: string; isDone: boolean }
 
 // TODO handle errors in a better way
-export const getTodos = async () => {
+export const getTodos = async (): Promise<todoList> => {
   try {
     const res = await fetch(ENDPOINT)
     const data: todoList = await res.json()
@@ -22,25 +27,24 @@ export const getTodos = async () => {
   }
 }
 
-export const createTodo = async (data: todoWithoutId) => {
+export const createTodo = async (data: todoWithoutId): Promise<todo> => {
   const res = await fetch(ENDPOINT, {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
+    method: HTTP_METHODS.POST,
+    headers: HEADERS,
     body: JSON.stringify(data),
   })
   const todo: todo = await res.json()
   return todo
 }
 
-export const updateTodo = async (todo: todo) => {
+export const updateTodo = async (todo: todo): Promise<todo> => {
   const todoJSON = JSON.stringify(todo)
-  await fetch(ENDPOINT, { method: 'PUT', body: todoJSON })
+  const res = await fetch(ENDPOINT, { method: HTTP_METHODS.PUT, headers: HEADERS, body: todoJSON })
+  const updatedTodo: todo = await res.json()
+  return updatedTodo
 }
 
 export const deleteTodo = async (todo: todo) => {
   const id = todo.id
-  await fetch(`${ENDPOINT}/${id}`, { method: 'DELETE' })
+  await fetch(`${ENDPOINT}/${id}`, { method: HTTP_METHODS.DELETE })
 }
