@@ -10,8 +10,8 @@ function App() {
 
   return (
     <div className='flex justify-center flex-col items-center'>
-      <Title setShowForm={setShowForm} />
       <ContextProvider>
+        <Title setShowForm={setShowForm} />
         {showForm && <TodoForm />}
         <TodoList />
       </ContextProvider>

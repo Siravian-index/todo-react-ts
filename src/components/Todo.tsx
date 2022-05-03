@@ -9,7 +9,7 @@ interface Props {
 
 const Todo: React.FunctionComponent<Props> = ({ todo: t, deleteOnClick, checkBox }) => {
   return (
-    <div className={`max-w-sm rounded shadow-xl ${!t.isDone && 'border-b border-orange-500'}`}>
+    <div className={`max-w-sm rounded shadow-xl ${!t.isDone && 'border-r border-b border-orange-500'}`}>
       <div className={`px-6 py-4 ${t.isDone && 'line-through decoration-orange-500 decoration-4 '}`}>
         <div className='font-bold text-xl mb-2'>{t.title}</div>
         <p className='text-gray-700 text-base'>{t.message}</p>

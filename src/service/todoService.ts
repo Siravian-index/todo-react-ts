@@ -44,7 +44,9 @@ export const updateTodo = async (todo: todo): Promise<todo> => {
   return updatedTodo
 }
 
-export const deleteTodo = async (todo: todo) => {
+export const deleteTodo = async (todo: todo): Promise<boolean> => {
   const id = todo.id
-  await fetch(`${ENDPOINT}/${id}`, { method: HTTP_METHODS.DELETE })
+  const res = await fetch(`${ENDPOINT}/${id}`, { method: HTTP_METHODS.DELETE, headers: HEADERS })
+  const wasDeleted: boolean = await res.json()
+  return wasDeleted
 }
